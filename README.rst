@@ -1,4 +1,4 @@
-``docopt`` creates *beautiful* command-line interfaces
+``docopt`` 为创建 *漂亮的* 命令行界面而生
 ======================================================================
 
 .. image:: https://travis-ci.org/docopt/docopt.svg?branch=master
@@ -7,7 +7,7 @@
 .. image:: https://img.shields.io/pypi/v/docopt.svg
     :target: https://pypi.python.org/pypi/docopt
 
-Video introduction to **docopt**: `PyCon UK 2012: Create *beautiful*
+视频介绍 **docopt**: `PyCon UK 2012: Create *beautiful*
 command-line interfaces with Python <http://youtu.be/pXhcPJK5cMc>`_
 
     New in version 0.6.1:
@@ -39,16 +39,12 @@ command-line interfaces with Python <http://youtu.be/pXhcPJK5cMc>`_
       This allows ``docopt`` to always use the *latest* ``sys.argv``,
       not ``sys.argv`` during import time.
 
-Isn't it awesome how ``optparse`` and ``argparse`` generate help
-messages based on your code?!
+能基于您的 ``optparse`` 和 ``argparse`` 生成帮助消息(``help messages``)是不是真棒？!
 
-*Hell no!*  You know what's awesome?  It's when the option parser *is*
-generated based on the beautiful help message that you write yourself!
-This way you don't need to write this stupid repeatable parser-code,
-and instead can write only the help message--*the way you want it*.
+一定不行！您知道什么是真棒吗？是当解析器 *是通过* 您自己写的 *漂亮的* 帮助消息(``help messages``)来自动生成的时候！
+这种方式您不在需要写那些愚蠢的可重复的解析器代码，而是只需写帮助消息(``help messages``) -- *您想要的方式*。
 
-**docopt** helps you create most beautiful command-line interfaces
-*easily*:
+**docopt** 帮助您 *轻松* 创建最美丽的命令行界面：
 
 .. code:: python
 
@@ -77,37 +73,33 @@ and instead can write only the help message--*the way you want it*.
         arguments = docopt(__doc__, version='Naval Fate 2.0')
         print(arguments)
 
-Beat that! The option parser is generated based on the docstring above
-that is passed to ``docopt`` function.  ``docopt`` parses the usage
-pattern (``"Usage: ..."``) and option descriptions (lines starting
-with dash "``-``") and ensures that the program invocation matches the
-usage pattern; it parses options, arguments and commands based on
-that. The basic idea is that *a good help message has all necessary
-information in it to make a parser*.
+完胜！选项解析器基于上面的文档字符串(``docstrings``)生成，并传递给 ``docopt`` 方法。
+``docopt`` 解析使用模式(``"usage pattern"``)(``"Usage: ..."``)和选项描述(``option descriptions``)(以 "``-``" 开头的行)，
+并确保程序调用与使用模式(``"usage pattern"``)相匹配；能基于它来解析选项，参数和命令。
+这一切的基本想法是 *一个好的帮助消息包含所有必要信息，从而生成一个解析器。*
 
-Also, `PEP 257 <http://www.python.org/dev/peps/pep-0257/>`_ recommends
-putting help message in the module docstrings.
+所以，`PEP 257 <http://www.python.org/dev/peps/pep-0257/>`_
+建议将帮助消息(``help messages``)放在模块文档字符串(``docstrings``)中。
 
-Installation
+安装(Installation)
 ======================================================================
 
-Use `pip <http://pip-installer.org>`_ or easy_install::
+使用 `pip <http://pip-installer.org>`_ 实现简单安装::
 
     pip install docopt==0.6.2
 
-Alternatively, you can just drop ``docopt.py`` file into your
-project--it is self-contained.
+另外一种安装方式，您只需把 ``docopt.py`` 文件拖入您的项目中 --它是独立可用的。
 
-**docopt** is tested with Python 2.6, 2.7, 3.3, 3.4, 3.5 and PyPy.
+**docopt** 已经经过 Python 2.6, 2.7, 3.3, 3.4, 3.5 和 PyPy 的测试。
 
-Testing
+测试(Testing)
 ======================================================================
 
-You can run unit tests using the command:
+您可用下列命令运行单元测试:
 
     python setup.py test
 
-API
+接口(API)
 ======================================================================
 
 .. code:: python
@@ -118,13 +110,12 @@ API
 
     docopt(doc, argv=None, help=True, version=None, options_first=False)
 
-``docopt`` takes 1 required and 4 optional arguments:
+``docopt`` 需要1个必须和4可选参数:
 
-- ``doc`` could be a module docstring (``__doc__``) or some other
-  string that contains a **help message** that will be parsed to
-  create the option parser.  The simple rules of how to write such a
-  help message are given in next sections.  Here is a quick example of
-  such a string:
+- ``doc`` 可以是一个文档字符串模块(``__doc__``)，
+  或者一些其他包含能被扩展解析器解析创建的 **help message** 字符串。
+  如何编写这样的 **help message** 的简单规则，将在接下来的章节中给出。
+  这里是一个简单示例:
 
 .. code:: python
 
@@ -138,45 +129,32 @@ API
 
     """
 
-- ``argv`` is an optional argument vector; by default ``docopt`` uses
-  the argument vector passed to your program (``sys.argv[1:]``).
-  Alternatively you can supply a list of strings like ``['--verbose',
-  '-o', 'hai.txt']``.
+- ``argv`` 是一个可选参数向量；默认情况下，``docopt`` 使用这些参数向量传递给程序的(``sys.argv[1:]``)。
+  或者，您也可以提供一个字符串数组，例如 ``['--verbose', '-o', 'hai.txt']``。
 
-- ``help``, by default ``True``, specifies whether the parser should
-  automatically print the help message (supplied as ``doc``) and
-  terminate, in case ``-h`` or ``--help`` option is encountered
-  (options should exist in usage pattern, more on that below). If you
-  want to handle ``-h`` or ``--help`` options manually (as other
-  options), set ``help=False``.
+- ``help`` 默认为 ``True``，指定解析器是否应自动打印帮助消息（如 ``doc``），然后终止程序，
+  如果遇到 ``-h`` 或 ``--help`` 选项（选项应该存在于使用模式中，更多说明在下面）。
+  如果要手动处理 ``-h`` 或 ``--help`` 选项（作为其他选项），需设置 ``help=False``。
 
-- ``version``, by default ``None``, is an optional argument that
-  specifies the version of your program. If supplied, then, (assuming
-  ``--version`` option is mentioned in usage pattern) when parser
-  encounters the ``--version`` option, it will print the supplied
-  version and terminate.  ``version`` could be any printable object,
-  but most likely a string, e.g. ``"2.1.0rc1"``.
+- ``version`` 默认为 ``None``，是指定程序版本的可选参数。
+  如果指定了（假设在使用模式中输入了 ``--version`` 选项），当解析器遇到 ``--version`` 选项，
+  它将打印 ``version`` 并终止。
+  ``version`` 可以是任何可打印的对象，但多数是字符串，例如 ``"2.1.0rc1"``。
 
-    Note, when ``docopt`` is set to automatically handle ``-h``,
-    ``--help`` and ``--version`` options, you still need to mention
-    them in usage pattern for this to work. Also, for your users to
-    know about them.
+    注意：当 ``docopt`` 设置为自动处理 ``-h``， ``--help`` 和 ``--version`` 选项时，
+    您仍然需要在使用模式中输入它们才能生效。此外，也方便为您的用户了解如何使用。
 
-- ``options_first``, by default ``False``.  If set to ``True`` will
-  disallow mixing options and positional argument.  I.e. after first
-  positional argument, all arguments will be interpreted as positional
-  even if the look like options.  This can be used for strict
-  compatibility with POSIX, or if you want to dispatch your arguments
-  to other programs.
+- ``options_first`` 默认为 ``False``。如果设置为 ``True`` 将不允许混序选项和位置参数。
+  也就是说在第一个位置参数后，所有内容将被解释为参数，即使看起来像选项。
+  这可以严格兼容于POSIX，或者说您想要将参数分派给其他程序。
 
-The **return** value is a simple dictionary with options, arguments
-and commands as keys, spelled exactly like in your help message.  Long
-versions of options are given priority. For example, if you invoke the
-top example as::
+**return** 的值是一个包含选项，参数和命令作为键的简单字典，准确拼写您的帮助消息。
+选项中较长的优先作为键。
+例如，如果您调用示例为::
 
     naval_fate.py ship Guardian move 100 150 --speed=15
 
-the return dictionary will be:
+返回字典内容将是:
 
 .. code:: python
 
@@ -189,16 +167,16 @@ the return dictionary will be:
      '<x>': '100',           'shoot': False,
      '<y>': '150'}
 
-Help message format
+``Help message`` 格式
 ======================================================================
 
-Help message consists of 2 parts:
+**Help message** 由2部分组成:
 
-- Usage pattern, e.g.::
+- ``Usage pattern`` 使用模式，例如::
 
     Usage: my_program.py [-hso FILE] [--quiet | --verbose] [INPUT ...]
 
-- Option descriptions, e.g.::
+- ``Option descriptions`` 选项说明，例如::
 
     -h --help    show this
     -s --sorted  sorted output
@@ -206,14 +184,13 @@ Help message consists of 2 parts:
     --quiet      print less text
     --verbose    print more text
 
-Their format is described below; other text is ignored.
+它们的格式如下所述，其他内容不再累述。
 
-Usage pattern format
+``Usage pattern`` 格式
 ----------------------------------------------------------------------
 
-**Usage pattern** is a substring of ``doc`` that starts with
-``usage:`` (case *insensitive*) and ends with a *visibly* empty line.
-Minimum example:
+**Usage pattern** 是一个用 ``usage:`` *(不区分大小写)* 开头的 ``doc`` 字符串，而且最下面以一个明显空行结束。
+这是个小例子:
 
 .. code:: python
 
@@ -221,9 +198,7 @@ Minimum example:
 
     """
 
-The first word after ``usage:`` is interpreted as your program's name.
-You can specify your program's name several times to signify several
-exclusive patterns:
+``usage:`` 后面的第一个单词作为您的程序名称。您可以多次指定程序名称来表示一系列唯一用法模式:
 
 .. code:: python
 
@@ -232,108 +207,81 @@ exclusive patterns:
 
     """
 
-Each pattern can consist of the following elements:
+每个模式可以由以下元素组成:
 
-- **<arguments>**, **ARGUMENTS**. Arguments are specified as either
-  upper-case words, e.g. ``my_program.py CONTENT-PATH`` or words
-  surrounded by angular brackets: ``my_program.py <content-path>``.
-- **--options**.  Options are words started with dash (``-``), e.g.
-  ``--output``, ``-o``.  You can "stack" several of one-letter
-  options, e.g. ``-oiv`` which will be the same as ``-o -i -v``. The
-  options can have arguments, e.g.  ``--input=FILE`` or ``-i FILE`` or
-  even ``-iFILE``. However it is important that you specify option
-  descriptions if you want your option to have an argument, a default
-  value, or specify synonymous short/long versions of the option (see
-  next section on option descriptions).
-- **commands** are words that do *not* follow the described above
-  conventions of ``--options`` or ``<arguments>`` or ``ARGUMENTS``,
-  plus two special commands: dash "``-``" and double dash "``--``"
-  (see below).
+- **<arguments>**, **ARGUMENTS**. 参数被指定为大写字母，例如： ``my_program.py CONTENT-PATH``
+  或者由尖括号包围的词： ``my_program.py <content-path>``。
+- **--options**. 选项是由用破折号(``-``)起始的单词，例如：``--output``, ``-o``。
+  您可以 "堆叠" 几个单字母选项，例如：``-oiv``，这与 ``-o -i -v`` 相同。
+  选项可以有参数，例如：``--input=FILE`` 或 ``-i FILE`` 甚至 ``-iFILE``。
+  无论如何，指定选项说明可以具有一个参数，一个默认值，或指定同义选项的短/长单词（请参阅选项说明的下一部分）。
+- **commands** 都是不遵循上述 ``--options`` 或 ``<arguments>`` 或 ``ARGUMENTS`` 的约定，
+  附加上两个特殊命令：单破折号 "``-``" 和双破折号 "``--``"（见下文）。
 
-Use the following constructs to specify patterns:
+使用以下构造来指定模式:
 
-- **[ ]** (brackets) **optional** elements.  e.g.: ``my_program.py
-  [-hvqo FILE]``
-- **( )** (parens) **required** elements.  All elements that are *not*
-  put in **[ ]** are also required, e.g.: ``my_program.py
-  --path=<path> <file>...`` is the same as ``my_program.py
-  (--path=<path> <file>...)``.  (Note, "required options" might be not
-  a good idea for your users).
-- **|** (pipe) **mutually exclusive** elements. Group them using **(
-  )** if one of the mutually exclusive elements is required:
-  ``my_program.py (--clockwise | --counter-clockwise) TIME``. Group
-  them using **[ ]** if none of the mutually-exclusive elements are
-  required: ``my_program.py [--left | --right]``.
-- **...** (ellipsis) **one or more** elements. To specify that
-  arbitrary number of repeating elements could be accepted, use
-  ellipsis (``...``), e.g.  ``my_program.py FILE ...`` means one or
-  more ``FILE``-s are accepted.  If you want to accept zero or more
-  elements, use brackets, e.g.: ``my_program.py [FILE ...]``. Ellipsis
-  works as a unary operator on the expression to the left.
-- **[options]** (case sensitive) shortcut for any options.  You can
-  use it if you want to specify that the usage pattern could be
-  provided with any options defined below in the option-descriptions
-  and do not want to enumerate them all in usage-pattern.
-- "``[--]``". Double dash "``--``" is used by convention to separate
-  positional arguments that can be mistaken for options. In order to
-  support this convention add "``[--]``" to your usage patterns.
-- "``[-]``". Single dash "``-``" is used by convention to signify that
-  ``stdin`` is used instead of a file. To support this add "``[-]``"
-  to your usage patterns. "``-``" acts as a normal command.
+- **[ ]** (中括号) **可选** 元素。例如： ``my_program.py [-hvqo FILE]``
+- **( )** (小括号) **必选** 元素。所有 *未* 放在 **[ ]** 中的元素也是必需的。例如：
+  ``my_program.py --path=<path> <file>...`` 与 ``my_program.py (--path=<path> <file>...)`` 相同。
+  （注意， "必选选项" 对于使用者来说可能不是一个好用法）。
+- **|** (竖线) **互斥** 元素。 如果需要互斥元素至少实现一个，则使用 **( )** 分组：
+  ``my_program.py (--clockwise | --counter-clockwise) TIME``。
+  如果不需要互斥元素都实现，则使用 **[ ]** 对它们进行分组：
+  ``my_program.py [--left | --right]``。
+- **...** (省略号) **一个或多个** 元素。指定可以接受任意数量的重复元素，
+  用省略号(``...``)，例如： ``my_program.py FILE ...`` 意思是接受一个或多个 ``FILE``。
+  如果想要接受零个或多个元素，请用中括号(``[ ]``)，例如： ``my_program.py [FILE ...]``。
+  省略号(``...``)放在表达式的左边作为一个一元运算符。
+- **[options]** (区分大小写) 任意选项的快捷方式。
+  如果在使用模式的选项描述中要指定可以提供任意已定义的选项，而不想在此都一一申明出来，就可以使用 **[options]**。
+- "``[--]``". 双短线 "``--``" 按约定用于来区分位置参数而不会被误认为是选项。要支持这个约定，在您的使用模式中添加 "``[--]``"。
+- "``[-]``". 单短线 "``-``" 按约定用于表示 ``stdin`` 而不是文件。要支持这个约定，请在您的使用模式中添加 "``[-]``"。
+  "``-``"作为正常命令。
 
-If your pattern allows to match argument-less option (a flag) several
-times::
+如果您的模式允许匹配几次无参数选项（一个标志）::
 
     Usage: my_program.py [-v | -vv | -vvv]
 
-then number of occurrences of the option will be counted. I.e.
-``args['-v']`` will be ``2`` if program was invoked as ``my_program
--vv``. Same works for commands.
+那么将计算选项的出现次数。也就是说 ``my_program -vv`` 返回的字典内容中 ``args['-v']`` 等于 ``2``，这同样适用于命令。
 
-If your usage patterns allows to match same-named option with argument
-or positional argument several times, the matched arguments will be
-collected into a list::
+如果您的使用模式允许多次匹配同名的选项和选项参数，或同名的位置参数，这些匹配的参数将被收集到一个列表中::
 
     Usage: my_program.py <file> <file> --path=<path>...
 
-I.e. invoked with ``my_program.py file1 file2 --path=./here
---path=./there`` the returned dict will contain ``args['<file>'] ==
-['file1', 'file2']`` and ``args['--path'] == ['./here', './there']``.
+也就是说，调用 ``my_program.py file1 file2 --path=./here --path=./there`` 返回的字典内容将包含
+``args['<file>'] == ['file1', 'file2']`` 和 ``args['--path'] == ['./here', './there']``。
 
 
-Option descriptions format
+``Option descriptions`` 格式
 ----------------------------------------------------------------------
 
-**Option descriptions** consist of a list of options that you put
-below your usage patterns.
+**Option descriptions** 包含了您在使用模式下面的选项列表。
 
-It is necessary to list option descriptions in order to specify:
+下列情况的选项说明(``option descriptions``)必须指定出来：
 
-- synonymous short and long options,
-- if an option has an argument,
-- if option's argument has a default value.
+- 同义的短/长选项命名，
+- 如果一个选项有一个参数，
+- 如果选项的参数有一个默认值。
 
-The rules are as follows:
+规则如下：
 
-- Every line in ``doc`` that starts with ``-`` or ``--`` (not counting
-  spaces) is treated as an option description, e.g.::
+- 在 ``doc`` 中以 ``-`` 或 ``--`` （不计算空格）开头的每行都被视为选项说明(``option descriptions``)，
+  例如::
 
     Options:
       --verbose   # GOOD
       -o FILE     # GOOD
     Other: --bad  # BAD, line does not start with dash "-"
 
-- To specify that option has an argument, put a word describing that
-  argument after space (or equals "``=``" sign) as shown below. Follow
-  either <angular-brackets> or UPPER-CASE convention for options'
-  arguments.  You can use comma if you want to separate options. In
-  the example below, both lines are valid, however you are recommended
-  to stick to a single style.::
+- 若要指定该选项拥有参数，请在描述该参数的字的后面加上空格（或是 "``=``" 号），如下所示。
+  对于选项的参数，请遵循<angular-brackets>或UPPER-CASE约定。
+  如果要分隔选项，可以使用逗号。
+  在下面的示例中，这两行都是有效的，但是建议您选择使用统一的样式::
 
     -o FILE --output=FILE       # without comma, with "=" sign
     -i <file>, --input <file>   # with comma, without "=" sing
 
-- Use two spaces to separate options with their informal description::
+- 使用两个空格来分隔选项及其非正式描述::
 
     --verbose More text.   # BAD, will be treated as if verbose option had
                            # an argument "More", so use 2 spaces instead
@@ -341,17 +289,14 @@ The rules are as follows:
     -o FILE   Output file. # GOOD
     --stdout  Use stdout.  # GOOD, 2 spaces
 
-- If you want to set a default value for an option with an argument,
-  put it into the option-description, in form ``[default:
-  <my-default-value>]``::
+- 如果要为带有参数的选项设置默认值，请将其放在选项描述中，格式为 ``[default: <my-default-value>]``::
 
     --coefficient=K  The K coefficient [default: 2.95]
     --output=FILE    Output file [default: test.txt]
     --directory=DIR  Some directory [default: ./]
 
-- If the option is not repeatable, the value inside ``[default: ...]``
-  will be interpreted as string.  If it *is* repeatable, it will be
-  splited into a list on whitespace::
+- 如果选项不可重复，则 ``[default: ...]`` 中的值将被解释为字符串。
+  如果它 *是* 可重复的，它将被分成一个列表并以空白间隔::
 
     Usage: my_program.py [--repeatable=<arg> --repeatable=<arg>]
                          [--another-repeatable=<arg>]...
@@ -366,59 +311,51 @@ The rules are as follows:
     # will be './here ./there', because it is not repeatable
     --not-repeatable=<arg>      [default: ./here ./there]
 
-Examples
+范例(Examples)
 ----------------------------------------------------------------------
 
-We have an extensive list of `examples
-<https://github.com/docopt/docopt/tree/master/examples>`_ which cover
-every aspect of functionality of **docopt**.  Try them out, read the
-source if in doubt.
+我们有一个丰富的 `examples
+<https://github.com/docopt/docopt/tree/master/examples>`_ 列表，
+里面涵盖了 **docopt** 的每一个项功能。您可以试用它们，如果有疑问，可以阅读源代码。
 
-Subparsers, multi-level help and *huge* applications (like git)
+子程序，多级帮助和巨大的应用程序（如git）
 ----------------------------------------------------------------------
 
-If you want to split your usage-pattern into several, implement
-multi-level help (with separate help-screen for each subcommand),
-want to interface with existing scripts that don't use **docopt**, or
-you're building the next "git", you will need the new ``options_first``
-parameter (described in API section above). To get you started quickly
-we implemented a subset of git command-line interface as an example:
+如果您要将使用模式拆分为几个，实现多级帮助（每个子命令都有单独的帮助屏幕），
+想要接入不使用 **docopt** 的现有脚本，或者您正在构建下一个"git"，
+那么新建 ``options_first`` 参数（如上面的API部分所述）可以帮助您。
+为了让您快速入门，我们实现了一个git命令行界面的子集作为示例：
 `examples/git
 <https://github.com/docopt/docopt/tree/master/examples/git>`_
 
 
-Data validation
+数据验证(Data validation)
 ----------------------------------------------------------------------
 
-**docopt** does one thing and does it well: it implements your
-command-line interface.  However it does not validate the input data.
-On the other hand there are libraries like `python schema
-<https://github.com/halst/schema>`_ which make validating data a
-breeze.  Take a look at `validation_example.py
+**docopt** 去做一件事，并能做得很好：它实现您的命令行界面。然而它不会验证输入数据。
+另一方面也有一些库比如 `python schema
+<https://github.com/halst/schema>`_ 会使验证数据轻而易举。
+通过源码分析 `validation_example.py
 <https://github.com/docopt/docopt/tree/master/examples/validation_example.py>`_
-which uses **schema** to validate data and report an error to the
-user.
+可以知道它使用 **schema** 来验证数据并向用户报告错误。
 
-Using docopt with config-files
+通过文件配置 **docopt** (Using docopt with config-files)
 ----------------------------------------------------------------------
 
-Often configuration files are used to provide default values which
-could be overriden by command-line arguments.  Since **docopt**
-returns a simple dictionary it is very easy to integrate with
-config-files written in JSON, YAML or INI formats.
-`config_file_example.py <examples/config_file_example.py>`_ provides
-and example of how to use **docopt** with JSON or INI config-file.
+通常配置文件用于提供一些可以被命令行参数覆盖的默认值。
+由于 **docopt** 返回一个简单的字典，它可以很容易通过JSON，YAML或INI格式编写的配置文件来集成。
+`config_file_example.py <examples/config_file_example.py>`_
+示例可以演示如何使用JSON或INI配置文件来实现 **docopt** 。
 
 
-Development
+开发(Development)
 ======================================================================
 
-We would *love* to hear what you think about **docopt** on our `issues
-page <http://github.com/docopt/docopt/issues>`_
+我们很 *乐意* 听到您在 `issues
+page <http://github.com/docopt/docopt/issues>`_ 上的对 **docopt** 的想法与建议
 
-Make pull requests, report bugs, suggest ideas and discuss
-**docopt**. You can also drop a line directly to
-<vladimir@keleshev.com>.
+提出代码贡献请求，报告错误，建议想法和讨论 **docopt** 。
+您也可以直接发邮件给<vladimir@keleshev.com>。
 
 Porting ``docopt`` to other languages
 ======================================================================
